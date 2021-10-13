@@ -61,6 +61,7 @@ spring.jpa.generate-ddl=true
 
 - DTO Pattern and Conversion
 ```java
+// Using ModelMapper
 // in application
 @Bean
 public ModelMapper modelMapper() {
@@ -73,12 +74,24 @@ private ModelMapper modelMapper;
 
 modelMapper.map(post, PostDto.class)
 
+// Using MapStruct
+// in gradle.build
+implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+// Create an interface
+@Mapper
+public interface GameMapper {
+    Game toModel(GameDTO dto);
+
+    GameDTO toDTO(Game game);
+}
+
 ```
 
 - Generic Success and Error Response
 
 - Validation
-
 
 - Swagger
 

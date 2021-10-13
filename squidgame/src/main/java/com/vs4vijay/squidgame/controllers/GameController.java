@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.vs4vijay.squidgame.core.SquidGameMapper;
+import com.vs4vijay.squidgame.dtos.GameDTO;
 import com.vs4vijay.squidgame.models.Game;
 import com.vs4vijay.squidgame.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,34 +20,43 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
+    @Autowired
+    private SquidGameMapper mapper;
+
     @GetMapping("")
-    public List<Game> getAll() {
+    public List<GameDTO> getAll() {
         List<Game> games = gameService.getAll();
-        return games;
+        List<GameDTO> gameDTOs = mapper.toGameDTOs(games);
+        return gameDTOs;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Game create(@RequestBody Game game) {
+    public GameDTO create(@RequestBody GameDTO gameDTO) {
+        Game game = mapper.toGame(gameDTO);
         Game createdGame = gameService.create(game);
-        return createdGame;
+        GameDTO createdGameDTO = mapper.toGameDTO(createdGame);
+        return createdGameDTO;
     }
 
     @GetMapping("/{id}")
-    public Game getById(@PathVariable("id") UUID id) {
+    public GameDTO getById(@PathVariable("id") UUID id) {
         Optional<Game> byId = gameService.getById(id);
         System.out.println("--- byId " + byId);
         if(byId.isPresent()) {
-            return byId.get();
+            GameDTO gameDTO = mapper.toGameDTO(byId.get());
+            return gameDTO;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
         }
     }
 
     @PutMapping("/{id}")
-    public Game update(@PathVariable("id") UUID id, @RequestBody Game game) {
+    public GameDTO update(@PathVariable("id") UUID id, @RequestBody GameDTO gameDTO) {
+        Game game = mapper.toGame(gameDTO);
         Game updatedGame = gameService.update(id, game);
-        return updatedGame;
+        GameDTO updatedGameDTO = mapper.toGameDTO(updatedGame);
+        return updatedGameDTO;
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
