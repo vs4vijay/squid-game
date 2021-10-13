@@ -9,5 +9,4 @@ public class SquidGameApplication {
     public static void main(String[] args) {
         SpringApplication.run(SquidGameApplication.class, args);
     }
-
 }

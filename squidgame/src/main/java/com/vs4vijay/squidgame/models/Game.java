@@ -23,9 +23,12 @@ public class Game {
     @GeneratedValue(generator = "UUID")
     UUID id;
 
-//    @Column()
+    @Column(nullable = false)
     String name;
 
-//    @Column()
+    @Column()
     String description;
+
+    @Column()
+    Integer round;
 }
