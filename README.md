@@ -35,6 +35,7 @@
 - POST /users
 - POST /games/{id}/join      { userId } => Player.JOINED
 - POST /games/{id}/start                => Game.STARTED
+- GET /games/{id}/feed       Streaming Response
 
 ## Events
 
@@ -80,7 +81,7 @@ implementation 'org.mapstruct:mapstruct:1.4.2.Final'
 annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
 // Create an interface
-@Mapper
+@Mapper(componentModel = "spring")
 public interface GameMapper {
     Game toModel(GameDTO dto);
 
@@ -88,6 +89,8 @@ public interface GameMapper {
 }
 
 ```
+
+- Unified Response body
 
 - Generic Success and Error Response
 

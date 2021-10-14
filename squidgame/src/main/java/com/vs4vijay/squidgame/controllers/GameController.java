@@ -6,8 +6,10 @@ import java.util.UUID;
 
 import com.vs4vijay.squidgame.core.SquidGameMapper;
 import com.vs4vijay.squidgame.dtos.GameDTO;
+import com.vs4vijay.squidgame.errors.ResourceNotFoundException;
 import com.vs4vijay.squidgame.models.Game;
 import com.vs4vijay.squidgame.services.GameService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +49,7 @@ public class GameController {
             GameDTO gameDTO = mapper.toGameDTO(byId.get());
             return gameDTO;
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
+            throw new ResourceNotFoundException(id.toString());
         }
     }
 
