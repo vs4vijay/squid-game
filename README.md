@@ -2,6 +2,15 @@
 
 ---
 
+## Tech. Stack
+
+- Java
+- Spring 5 with Spring Boot 2
+- H2 Database
+- Lombok
+
+---
+
 ## Running
 
 - `gradlew bootRun`
@@ -95,8 +104,12 @@ public interface GameMapper {
 - Generic Success and Error Response
 
 - Validation
+Add validation dependencies (org.springframework.boot:spring-boot-starter-validation)
+can use @NotNull, @Nullable
 
 - Swagger
+
+- Localization
 
 - Misc
 ```shell

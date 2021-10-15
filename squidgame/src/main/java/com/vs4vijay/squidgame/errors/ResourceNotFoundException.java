@@ -1,8 +1,6 @@
 package com.vs4vijay.squidgame.errors;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class ResourceNotFoundException extends RuntimeException {
