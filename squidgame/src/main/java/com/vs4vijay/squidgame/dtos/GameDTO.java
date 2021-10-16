@@ -1,6 +1,8 @@
 package com.vs4vijay.squidgame.dtos;
 
 import lombok.Data;
+import org.springframework.data.annotation.LastModifiedBy;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,4 +21,8 @@ public class GameDTO {
     Date createdAt;
 
     Date updatedAt;
+
+    String createdBy;
+
+    String updatedBy;
 }
