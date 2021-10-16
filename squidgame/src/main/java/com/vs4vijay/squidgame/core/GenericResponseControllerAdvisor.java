@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 @RestControllerAdvice
-public class GenericResponseControllerAdvice implements ResponseBodyAdvice {
+public class GenericResponseControllerAdvisor implements ResponseBodyAdvice {
 
     @Override
     public boolean supports(MethodParameter returnType, Class converterType) {
+        // TODO: Check for MimeType
         System.out.println("methodParameter.getContainingClass().isAnnotationPresent(RestController.class)=="+ returnType.getContainingClass().isAnnotationPresent(RestController.class));
         System.out.println("returnType " + returnType);
         System.out.println("converterType " + converterType);
