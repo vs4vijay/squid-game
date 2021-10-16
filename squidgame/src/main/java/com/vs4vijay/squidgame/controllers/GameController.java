@@ -9,6 +9,7 @@ import com.vs4vijay.squidgame.dtos.GameDTO;
 import com.vs4vijay.squidgame.errors.ResourceNotFoundException;
 import com.vs4vijay.squidgame.models.Game;
 import com.vs4vijay.squidgame.services.GameService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Slf4j
 @Validated
 @RequestMapping("/games")
 @RestController()

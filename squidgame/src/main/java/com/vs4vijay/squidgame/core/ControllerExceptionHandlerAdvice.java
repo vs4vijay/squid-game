@@ -64,6 +64,7 @@ public class ControllerExceptionHandlerAdvice {
     public ErrorResponseDTO globalExceptionHandler(Exception ex, WebRequest request) {
         // TODO: Print stacktrace
         ex.printStackTrace();
+
         ErrorResponseDTO errorDTO = ErrorResponseDTO.builder()
                 .errorCode(HttpStatus.INTERNAL_SERVER_ERROR.name())
                 .message(ex.getMessage())

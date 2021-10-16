@@ -16,5 +16,5 @@ public class ErrorResponseDTO {
     String errorCode;
 
     @Singular
-    List<String> errors;
+    List<Object> errors;
 }
