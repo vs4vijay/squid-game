@@ -19,17 +19,22 @@ public abstract class BaseModel {
     @GeneratedValue(generator = "UUID")
     UUID id;
 
+    @Column()
     Boolean isActive;
 
     @CreatedDate
+    @Column(nullable = false, updatable = false)
     Date createdAt;
 
     @LastModifiedDate
+    @Column(nullable = false)
     Date updatedAt;
 
     @CreatedBy
+    @Column(updatable = false)
     String createdBy;
 
     @LastModifiedBy
+    @Column()
     String updatedBy;
 }
