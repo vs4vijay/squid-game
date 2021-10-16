@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.vs4vijay.squidgame.core.SquidGameMapper;
+import com.vs4vijay.squidgame.dtos.CreateGameDTO;
 import com.vs4vijay.squidgame.dtos.GameDTO;
 import com.vs4vijay.squidgame.errors.ResourceNotFoundException;
 import com.vs4vijay.squidgame.models.Game;
@@ -38,9 +39,10 @@ public class GameController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public GameDTO create(@Valid @RequestBody GameDTO gameDTO) {
+    public GameDTO create(@Valid @RequestBody CreateGameDTO gameDTO) {
         Game game = mapper.toGame(gameDTO);
         Game createdGame = gameService.create(game);
+        log.info("createdGame {}", createdGame);
         GameDTO createdGameDTO = mapper.toGameDTO(createdGame);
         return createdGameDTO;
     }
