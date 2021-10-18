@@ -114,7 +114,7 @@ public interface GameMapper {
   ```
   - Create an Advisor which implements `ResponseBodyAdvise`
   ```java
-	@RestControllerAdvice
+	@RestControllerAdvice(basePackages = "com.vs4vijay.squidgame.controllers")
 	public class GenericResponseControllerAdvisor implements ResponseBodyAdvice {
 
 		@Override
@@ -278,9 +278,21 @@ public interface GameMapper {
 	}
   ```
 
-- Swagger
+- OpenAPI / Swagger Docs
+  - Add springdoc dependencies to build.gradle
+  ```java
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.11'
+  ```
+  - Add config to application.properties
+  ```
+	springdoc.packagesToScan=com.vs4vijay.squidgame.controllers
+	springdoc.api-docs.path=/api-docs
+	springdoc.swagger-ui.path=/swagger-ui.html
+  ```
 
-- Localization
+- Soft Delete
+
+? Pagination, Sorting
 
 - Misc
 ```shell

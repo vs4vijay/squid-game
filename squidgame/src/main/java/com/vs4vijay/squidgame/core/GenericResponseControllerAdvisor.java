@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "com.vs4vijay.squidgame.controllers")
 public class GenericResponseControllerAdvisor implements ResponseBodyAdvice {
 
     @Override
@@ -27,7 +27,7 @@ public class GenericResponseControllerAdvisor implements ResponseBodyAdvice {
         if(body instanceof ResponseDTO || body instanceof ErrorResponseDTO) {
             return body;
         } else {
-            // TODO: Try with new
+//            // TODO: Try with new
             return ResponseDTO.builder().data(body).build();
         }
     }
