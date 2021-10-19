@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 public class GameDTO extends BaseDTO {
-    UUID id;
+    String id;
 
     String name;
 

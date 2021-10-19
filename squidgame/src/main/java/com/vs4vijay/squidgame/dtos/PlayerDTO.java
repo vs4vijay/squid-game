@@ -6,6 +6,6 @@ import java.util.UUID;
 
 @Data
 public class PlayerDTO extends BaseDTO {
-    UUID id;
+    String id;
     String name;
 }

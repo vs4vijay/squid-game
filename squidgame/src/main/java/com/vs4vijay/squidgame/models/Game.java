@@ -33,6 +33,5 @@ public class Game extends BaseModel {
     private void onCreate() {
         this.round = 1;
         this.status = GameStatus.NOT_STARTED;
-        System.out.println("onCreate--" + this);
     }
 }

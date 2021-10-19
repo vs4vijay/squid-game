@@ -22,7 +22,7 @@ public class GameService {
         return gameRepository.save(game);
     }
 
-    public Optional<Game> getById(UUID id) {
+    public Optional<Game> getById(String id) {
         return gameRepository.findById(id);
     }
 
@@ -30,13 +30,13 @@ public class GameService {
         return gameRepository.findAll();
     }
 
-    public Game update(UUID id, Game game) {
+    public Game update(String id, Game game) {
         gameRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
         game.setId(id);
         return gameRepository.save(game);
     }
 
-    public void delete(UUID id) {
+    public void delete(String id) {
         gameRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
         gameRepository.deleteById(id);
     }

@@ -1,7 +1,6 @@
 package com.vs4vijay.squidgame.models;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -17,8 +16,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseModel {
     @Id
-    @GeneratedValue(generator = "UUID")
-    UUID id;
+    String id;
 
     @Column()
     Boolean isActive;
@@ -38,4 +36,11 @@ public abstract class BaseModel {
     @LastModifiedBy
     @Column()
     String updatedBy;
+
+    @PrePersist
+    private void onInit() {
+        this.isActive = true;
+        // TODO: Find a better way to use String data type while storing UUID
+        this.id = UUID.randomUUID().toString();
+    }
 }

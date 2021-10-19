@@ -47,7 +47,7 @@ public class GameController {
     }
 
     @GetMapping("/{id}")
-    public GameDTO getById(@PathVariable("id") UUID id) {
+    public GameDTO getById(@PathVariable("id") String id) {
         Optional<Game> byId = gameService.getById(id);
         if(byId.isPresent()) {
             GameDTO gameDTO = mapper.toGameDTO(byId.get());
@@ -58,7 +58,7 @@ public class GameController {
     }
 
     @PutMapping("/{id}")
-    public GameDTO update(@PathVariable("id") UUID id, @RequestBody CreateGameDTO gameDTO) {
+    public GameDTO update(@PathVariable("id") String id, @RequestBody CreateGameDTO gameDTO) {
         // TODO: Check if valid game
         Game game = mapper.toGame(gameDTO);
         // TODO: Partial Update
@@ -69,7 +69,7 @@ public class GameController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") UUID id) {
+    public void delete(@PathVariable("id") String id) {
         gameService.delete(id);
     }
 }

@@ -34,7 +34,7 @@ public class PlayerController {
     private SquidGameMapper mapper;
 
     @PostMapping("/join")
-    public PlayerDTO joinGame(@PathVariable("gameId") UUID gameId, @Valid @RequestBody JoinPlayerDTO playerDTO) {
+    public PlayerDTO joinGame(@PathVariable("gameId") String gameId, @Valid @RequestBody JoinPlayerDTO playerDTO) {
         // TODO: Check for valid gameId
         Optional<Game> gameOptional = gameService.getById(gameId);
         if(gameOptional.isEmpty()) {
@@ -49,7 +49,7 @@ public class PlayerController {
     }
 
     @GetMapping("")
-    public List<PlayerDTO> getPlayersByGame(@PathVariable("gameId") UUID gameId) {
+    public List<PlayerDTO> getPlayersByGame(@PathVariable("gameId") String gameId) {
         Optional<Game> gameOptional = gameService.getById(gameId);
         if(gameOptional.isEmpty()) {
             throw new ResourceNotFoundException(gameId.toString());
