@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Slf4j
-@Validated
-@RequestMapping("/games")
 @RestController()
+@RequestMapping("/games")
+@Validated
+@Slf4j
 public class GameController {
 
     @Autowired

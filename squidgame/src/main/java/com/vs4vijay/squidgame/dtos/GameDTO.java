@@ -1,13 +1,12 @@
 package com.vs4vijay.squidgame.dtos;
 
+import com.vs4vijay.squidgame.enums.GameStatus;
 import lombok.Data;
-import org.springframework.data.annotation.LastModifiedBy;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Data
-public class GameDTO {
+public class GameDTO extends BaseDTO {
     UUID id;
 
     String name;
@@ -16,13 +15,5 @@ public class GameDTO {
 
     Integer round;
 
-    Boolean isActive;
-
-    Date createdAt;
-
-    Date updatedAt;
-
-    String createdBy;
-
-    String updatedBy;
+    GameStatus status;
 }
