@@ -18,4 +18,8 @@ public class Player extends BaseModel {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn()
     Game game;
+
+    public Player(String playerName) {
+        this.name = playerName;
+    }
 }

@@ -1,5 +1,6 @@
 package com.vs4vijay.squidgame.models;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -39,8 +40,10 @@ public abstract class BaseModel {
 
     @PrePersist
     private void onInit() {
+        if(this.id == null) {
+            // TODO: Find a better way to use String data type while storing UUID
+            this.id = UUID.randomUUID().toString();
+        }
         this.isActive = true;
-        // TODO: Find a better way to use String data type while storing UUID
-        this.id = UUID.randomUUID().toString();
     }
 }

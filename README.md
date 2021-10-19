@@ -8,6 +8,8 @@
 - Spring 5 with Spring Boot 2
 - H2 Database
 - Lombok
+- MapStruct
+- AxonIQ
 
 ---
 
@@ -24,6 +26,7 @@
   - name
   - description
   - round
+  - status
 - User
   - id
   - username
@@ -41,19 +44,33 @@
 - GET /games/{id}
 - PUT /games/{id}
 - DELETE /games/{id}
-- POST /users
-- POST /games/{id}/join      { userId } => Player.JOINED
-- POST /games/{id}/start                => Game.STARTED
+- POST /games/{id}/join      { userId } => PlayerJoined
+- POST /games/{id}/start                => GameStarted
 - GET /games/{id}/feed       Streaming Response
+- POST /users
+
+
+## Commands
+
+- JoinGameCommand, { gameId, playerId }  => PlayerJoinedEvent
+- StartGameCommand, { gameId }           => GameStartedEvent
+- LeaveGameCommand, { gameId, playerId } => PlayerLeftEvent
+- EliminatePlayerCommand, { gameId, playerId } => PlayerEliminatedEvent
+- EndGameComand, { gameId } 		     => GameOverEvent, PlayerWonEvent
 
 ## Events
 
-- Player.JOINED
-- Player.LEFT
-- Player.ELIMINATED
-- Player.WON
-- Game.STARTED
-- Game.OVER
+- PlayerJoinedEvent
+- PlayerLeftEvent
+- PlayerEliminatedEvent
+- PlayerWonEvent
+- GameStartedEvent
+- GameOverEvent
+
+## Queries
+
+- 
+- SubscribeGame, { gameId }   
 
 ---
 
@@ -292,7 +309,11 @@ public interface GameMapper {
 
 - Soft Delete
 
-? Pagination, Sorting
+- Pagination, Sorting
+
+- Event Sourcing and CQRS with AxonIQ
+  - https://docs.axoniq.io/reference-guide/
+  - 
 
 - Misc
 ```shell

@@ -9,6 +9,7 @@ import com.vs4vijay.squidgame.models.Player;
 import com.vs4vijay.squidgame.services.GameService;
 import com.vs4vijay.squidgame.services.PlayerService;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,9 @@ public class PlayerController {
 
     @Autowired
     private SquidGameMapper mapper;
+
+    @Autowired
+    private CommandGateway commandGateway;
 
     @PostMapping("/join")
     public PlayerDTO joinGame(@PathVariable("gameId") String gameId, @Valid @RequestBody JoinPlayerDTO playerDTO) {
