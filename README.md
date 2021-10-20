@@ -312,7 +312,9 @@ public interface GameMapper {
 - Pagination, Sorting
 
 - Event Sourcing and CQRS with AxonIQ
-  - https://docs.axoniq.io/reference-guide/
+  - Ref:
+	- https://docs.axoniq.io/reference-guide/
+	- https://www.youtube.com/watch?v=nMXfgJWViws
   - 
 
 - Misc

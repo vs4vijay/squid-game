@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,19 +50,6 @@ public class GameController {
         Game createdGame = gameService.create(game);
         GameDTO createdGameDTO = mapper.toGameDTO(createdGame);
         return createdGameDTO;
-    }
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/createWithES")
-    public Object createWithES(@Valid @RequestBody CreateGameDTO gameDTO) {
-        CreateGameCommand createGameCommand = CreateGameCommand.builder()
-                .gameId(UUID.randomUUID().toString())
-                .name(gameDTO.getName())
-                .build();
-
-        Object result = commandGateway.sendAndWait(createGameCommand);
-        System.out.println("result: " + result);
-        return Map.of("result", result);
     }
 
     @GetMapping("/{id}")

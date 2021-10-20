@@ -19,9 +19,6 @@ public abstract class BaseModel {
     @Id
     String id;
 
-    @Column()
-    Boolean isActive;
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     Date createdAt;
@@ -44,6 +41,5 @@ public abstract class BaseModel {
             // TODO: Find a better way to use String data type while storing UUID
             this.id = UUID.randomUUID().toString();
         }
-        this.isActive = true;
     }
 }

@@ -2,10 +2,14 @@ package com.vs4vijay.squidgame.projections;
 
 import com.vs4vijay.squidgame.events.GameCreatedEvent;
 import com.vs4vijay.squidgame.models.Game;
+import com.vs4vijay.squidgame.queries.GetGamesQuery;
 import com.vs4vijay.squidgame.repositories.GameRepository;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class GameProjection {
@@ -25,5 +29,11 @@ public class GameProjection {
         game.setId(event.getGameId());
 
         gameRepository.save(game);
+    }
+
+    @QueryHandler
+    public List<Game> handle(GetGamesQuery query) {
+        List<Game> games = gameRepository.findAll();
+        return games;
     }
 }

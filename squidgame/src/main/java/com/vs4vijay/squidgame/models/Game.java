@@ -28,12 +28,16 @@ public class Game extends BaseModel {
     @Column()
     GameStatus status;
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+    @Column()
+    Boolean isActive;
+
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Player> players;
 
     @PrePersist
     private void onCreate() {
         this.round = 1;
         this.status = GameStatus.NOT_STARTED;
+        this.isActive = true;
     }
 }
