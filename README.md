@@ -6,6 +6,7 @@
 
 - Java
 - Spring 5 with Spring Boot 2
+- Hibernate / JPA
 - H2 Database
 - Lombok
 - MapStruct
@@ -308,8 +309,34 @@ public interface GameMapper {
   ```
 
 - Soft Delete
+  - Add column to Model `@Column() Boolean isDeleted;`
+  - Add SOFT_DELETE_CLAUSE for later use
+  ```java
+	public static final String SOFT_DELETE_CLAUSE = "is_deleted = false";
+  ```
+  - Add `@SQLDelete` and `@Where` Annotations to Model
+  ```java
+	@SQLDelete(sql = "UPDATE game SET is_deleted = true WHERE id = ?")
+	@Where(clause = BaseModel.SOFT_DELETE_CLAUSE)
+  ```
 
 - Pagination, Sorting
+  - Add "Pageable pageRequest" parameter to controller method, as spring injects this automatically
+  - Make service method to access Pageable parameter and return Page<> object
+  ```java
+	public Page<Game> getAll(Pageable pageRequest) {
+        return gameRepository.findAll(pageRequest);
+    }
+  ```
+  - Build metadata from Page object at controller
+  ```java
+	Map metadata = Map.of(
+		"currentPage", page.getNumber(),
+		"totalPages", page.getTotalPages(),
+		"pageSize", page.getSize(),
+		"totalElements", page.getTotalElements()
+	);
+  ```
 
 - Event Sourcing and CQRS with AxonIQ
   - Ref:
@@ -327,4 +354,6 @@ gradlew bootRun
 # Auto reload in IntelliJ
 https://stackoverflow.com/questions/23155244/spring-boot-hotswap-with-intellij-ide
 
+# Spring Data Query Creation
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.introduction
 ```
