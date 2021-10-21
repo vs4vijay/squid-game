@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
@@ -15,6 +18,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor()
 @AllArgsConstructor()
+@SQLDelete(sql = "UPDATE game SET is_deleted = true WHERE id = ?")
+@Where(clause = BaseModel.SOFT_DELETE_CLAUSE)
+@DynamicUpdate
 public class Game extends BaseModel {
     @Column(nullable = false)
     String name;

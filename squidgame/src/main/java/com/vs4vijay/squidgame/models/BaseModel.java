@@ -16,6 +16,9 @@ import java.util.UUID;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseModel {
+
+    public static final String SOFT_DELETE_CLAUSE = "is_deleted = false";
+
     @Id
     String id;
 
@@ -35,11 +38,15 @@ public abstract class BaseModel {
     @Column()
     String updatedBy;
 
+    @Column()
+    Boolean isDeleted;
+
     @PrePersist
     private void onInit() {
-        if(this.id == null) {
+        if(id == null) {
             // TODO: Find a better way to use String data type while storing UUID
-            this.id = UUID.randomUUID().toString();
+            id = UUID.randomUUID().toString();
         }
+        isDeleted = false;
     }
 }
