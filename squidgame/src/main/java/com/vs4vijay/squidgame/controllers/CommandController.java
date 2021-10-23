@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController()
-@RequestMapping("/commands/games")
+@RequestMapping("/commands")
 @Validated
 @Slf4j
 public class CommandController {
@@ -23,8 +23,8 @@ public class CommandController {
     private CommandGateway commandGateway;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
-    public Object create(@Valid @RequestBody CreateGameDTO gameDTO) {
+    @PostMapping("createGame")
+    public Object createGame(@Valid @RequestBody CreateGameDTO gameDTO) {
         CreateGameCommand createGameCommand = CreateGameCommand.builder()
                 .gameId(UUID.randomUUID().toString())
                 .name(gameDTO.getName())

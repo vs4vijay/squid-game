@@ -10,7 +10,7 @@
 - H2 Database
 - Lombok
 - MapStruct
-- AxonIQ
+- Axon Framework
 
 ---
 
@@ -269,7 +269,7 @@ public interface GameMapper {
 - Logging: Annotate `@Slf4j` to class, it will inject `log` object for logging
 
 - Populate Audit Fields:
-  - Add fields with `@CreatedDate, @LastModifiedDate, @CreatedBy, @LastModifiedBy`
+  - Add fields with `@CreatedDate, @LastModifiedDate, @CreatedBy, @LastModifiedBy` annotations
   - Use `@Column(updatable = false)` in createdAt and createdBy fields
   - Apply `@EntityListeners(AuditingEntityListener.class)` at Model class
   - Implement `AuditorAware` interface:
@@ -320,8 +320,8 @@ public interface GameMapper {
 	@Where(clause = BaseModel.SOFT_DELETE_CLAUSE)
   ```
 
-- Pagination, Sorting
-  - Add "Pageable pageRequest" parameter to controller method, as spring injects this automatically
+- Pagination and Sorting
+  - Add `Pageable pageRequest` parameter to controller method, as spring injects this automatically
   - Make service method to access Pageable parameter and return Page<> object
   ```java
 	public Page<Game> getAll(Pageable pageRequest) {
@@ -338,7 +338,7 @@ public interface GameMapper {
 	);
   ```
 
-- Event Sourcing and CQRS with AxonIQ
+- Event Sourcing and CQRS with Axon Framework
   - Ref:
 	- https://docs.axoniq.io/reference-guide/
 	- https://www.youtube.com/watch?v=nMXfgJWViws
