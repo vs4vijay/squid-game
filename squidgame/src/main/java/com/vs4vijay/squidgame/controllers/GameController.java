@@ -51,7 +51,7 @@ public class GameController {
         ResponseDTO responseDTO =
                 ResponseDTO
                         .builder()
-                        .data(gamePage.getContent())
+                        .data(mapper.toGameDTOs(gamePage.getContent()))
                         .metadata(metadata)
                         .build();
         return responseDTO;

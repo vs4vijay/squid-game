@@ -38,11 +38,11 @@ public abstract class BaseModel {
     @Column()
     String updatedBy;
 
-    @Column()
+    @Column(updatable = false)
     Boolean isDeleted;
 
     @PrePersist
-    private void onInit() {
+    private void onBaseModelCreate() {
         if(id == null) {
             // TODO: Find a better way to use String data type while storing UUID
             id = UUID.randomUUID().toString();

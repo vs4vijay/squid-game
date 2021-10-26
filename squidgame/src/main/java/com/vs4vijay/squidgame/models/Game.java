@@ -41,7 +41,7 @@ public class Game extends BaseModel {
     List<Player> players;
 
     @PrePersist
-    private void onCreate() {
+    private void onGameCreate() {
         this.round = 1;
         this.status = GameStatus.NOT_STARTED;
         this.isActive = true;

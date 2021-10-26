@@ -309,7 +309,7 @@ public interface GameMapper {
   ```
 
 - Soft Delete
-  - Add column to Model `@Column() Boolean isDeleted;`
+  - Add column to Model `@Column(updatable = false) Boolean isDeleted;`
   - Add SOFT_DELETE_CLAUSE for later use
   ```java
 	public static final String SOFT_DELETE_CLAUSE = "is_deleted = false";
@@ -328,6 +328,7 @@ public interface GameMapper {
         return gameRepository.findAll(pageRequest);
     }
   ```
+  - Add `Map metadata` to ResponseDTO
   - Build metadata from Page object at controller
   ```java
 	Map metadata = Map.of(
